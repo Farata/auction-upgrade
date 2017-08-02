@@ -1,0 +1,4 @@
+<span ng-repeat="s in stars"
+      ng-class="{'glyphicon-star-empty': s.isEmpty }"
+      class="starrating glyphicon glyphicon-star"></span>
+<span ng-if="showAverage">{{ average }} stars</span>
