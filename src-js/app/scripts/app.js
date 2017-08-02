@@ -1,16 +1,18 @@
 'use strict';
 
 angular.module('store', ['ngRoute'])
-  .config(function ($routeProvider) {
+  .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('');
+
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        template: require('../views/main.html'),
         controller: 'MainController',
         controllerAs: 'ctrl',
         reloadOnSearch: false
       })
       .when('/products/:id', {
-        templateUrl: 'views/product.html',
+        template: require('../views/product.html'),
         controller: 'ProductController',
         controllerAs: 'ctrl',
         resolve: {
@@ -29,4 +31,10 @@ angular.module('store', ['ngRoute'])
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
+
+require('./filter/FromNowFilter');
+require('./service/ReviewService');
+require('./service/ProductService');
+require('./controller/MainController');
+require('./controller/ProductController');
